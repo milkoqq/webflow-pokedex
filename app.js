@@ -1,6 +1,21 @@
 console.log('connected')
-const wrapperPoke = document.querySelector('.pokemon__wrapper')
-console.log(wrapperPoke)
+
+const pokeContainer = document.querySelector('.pokemon-container')
+const btnFetchAll = document.querySelector('.fetch-all')
+const btnSortById = document.querySelector('.sort-by-id')
+console.log(btnSortById)
+const pokemons = []
+let html;
+
+
+btnFetchAll.addEventListener('click', (e)=> {
+    e.preventDefault()
+    getPokemon(10)
+    btnFetchAll.disabled = true
+    console.log('All pokemons fetched!')
+})
+
+btnSortById.addEventListener('click', sortPokemonsById)
 
 const getPokemon = async num => {
     try {
@@ -9,16 +24,24 @@ const getPokemon = async num => {
 
             const res = await fetch(`${url}${i}`)
             const data = await res.json()
+            pokemons.push(data)
             // console.log(data)
-            console.log(data.id, data.name, data.types[0].type.name)
-            const html = `
-            <div class="pokemon__name">${data.name}</div>
-
-        </div>
-            `
-            wrapperPoke.insertAdjacentHTML('beforeend', html)
-
+            // console.log(data.id, data.name, data.types[0].type.name)
         }
+
+        pokemons.forEach((pokemon)=> {
+            html = `
+            <div class="pokemon-wrapper"> 
+            <div class="pokemon-name">${pokemon.name} </div>
+            <div class="pokemon-id">${pokemon.id}</div>
+            <img src="${pokemon.sprites.front_default}">
+            <div class="pokemon-type">${pokemon.types[0].type.name}
+            </div>
+            `
+            pokeContainer.insertAdjacentHTML('beforeend',html)
+        })
+        
+        console.log(pokemons)
 
     }
     catch (err) {
@@ -26,11 +49,22 @@ const getPokemon = async num => {
     }
 
 }
-{/* <img src="" alt="" class="pokemon__image"></img> */ }
-getPokemon(20)
-// fetch(`https://pokeapi.co/api/v2/pokemon/ditto`).then((res) => res.json())
-//     .then(data => {
-//         console.log(data)
-//         console.log(data.name)
-//         console.log(data.sprites.front_shiny)
-//     })
+
+function sortPokemonsById() {
+    pokeContainer.innerHTML=''
+    pokemons.sort((a,b)=>b.id-a.id)
+    pokemons.forEach((pokemon)=> {
+        html = `
+        <div class="pokemon-wrapper"> 
+        <div class="pokemon-name">${pokemon.name} </div>
+        <div class="pokemon-id">${pokemon.id}</div>
+        <img src="${pokemon.sprites.front_default}">
+        <div class="pokemon-type">${pokemon.types[0].type.name}
+        </div>
+        `
+        pokeContainer.insertAdjacentHTML('beforeend',html)
+    })
+    console.log(pokemons)
+}
+
+

@@ -1,26 +1,43 @@
+
+
 body {
-    height: 100vh;
-    background-color: aliceblue;
+    width: 100vw;
+    background-color: aqua;
     display: flex;
     justify-content: center;
 }
 
 .container {
-    background-color: brown;
-    align-self: flex-start;
-    padding: 2rem;
+    max-width: 80%;
+    background-color: gray;
     display: flex;
     flex-direction: column;
-    max-width: 60rem;
+    justify-content: center;
+    align-items: center;
+    
+
 }
 
-.pokemon__wrapper {
+.pokemon-container {
     display: flex;
-    width: auto;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 90%;
+    background-color: red;
+    padding: 2rem;
 }
 
-.pokemon__image {
-    width: 100px;
-    height: 100px;
-    background-color: red;
+.pokemon-wrapper {
+    padding: 0.5rem;
+    background-color: white;
+}
+
+h1 {
+    background-color: bisque;
+}
+
+.fetch-all {
+    margin-bottom: 1rem;
 }
