@@ -10,7 +10,7 @@ let html;
 
 btnFetchAll.addEventListener('click', (e)=> {
     e.preventDefault()
-    getPokemon(10)
+    getPokemon(150)
     btnFetchAll.disabled = true
     console.log('All pokemons fetched!')
 })
@@ -20,16 +20,17 @@ btnSortById.addEventListener('click', sortPokemonsById)
 const getPokemon = async num => {
     try {
         const url = `https://pokeapi.co/api/v2/pokemon/`
-        for (let i = 1; i <= num; i++) {
 
+        //Fetch pokemons and push into array
+        for (let i = 1; i <= num; i++) {
             const res = await fetch(`${url}${i}`)
             const data = await res.json()
             pokemons.push(data)
-            // console.log(data)
-            // console.log(data.id, data.name, data.types[0].type.name)
         }
 
-        pokemons.forEach((pokemon)=> {
+
+        //For each pokemon display the pokemon block inside the parent container.
+        pokemons.forEach((pokemon)=> {  
             html = `
             <div class="pokemon-wrapper"> 
             <div class="pokemon-name">${pokemon.name} </div>
@@ -40,16 +41,17 @@ const getPokemon = async num => {
             `
             pokeContainer.insertAdjacentHTML('beforeend',html)
         })
-        
-        console.log(pokemons)
+    
 
     }
     catch (err) {
-        new Error(err, 'NOT gonna catch them all')
+        new Error(err, 'NOT gonna catch them all today.')
     }
-
 }
+
+
 let order = true;
+
 function sortPokemonsById() {
     order = !order
     console.log('After Pressing The Button:',order)
