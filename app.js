@@ -49,10 +49,12 @@ const getPokemon = async num => {
     }
 
 }
-
+let order = true;
 function sortPokemonsById() {
+    order = !order
+    console.log('After Pressing The Button:',order)
     pokeContainer.innerHTML=''
-    pokemons.sort((a,b)=>b.id-a.id)
+    order === true ? pokemons.sort((a,b)=>a.id-b.id) : pokemons.sort((a,b)=>b.id-a.id)
     pokemons.forEach((pokemon)=> {
         html = `
         <div class="pokemon-wrapper"> 
@@ -64,7 +66,8 @@ function sortPokemonsById() {
         `
         pokeContainer.insertAdjacentHTML('beforeend',html)
     })
-    console.log(pokemons)
+    
+    
 }
 
 
