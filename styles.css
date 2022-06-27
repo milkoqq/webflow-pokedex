@@ -1,0 +1,18 @@
+body {
+    height: 100vh;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background-color: brown;
+    align-self: flex-start;
+    padding: 2rem;
+}
+
+.pokemon__image {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
