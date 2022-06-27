@@ -13,7 +13,7 @@ const getPokemon = async num => {
             console.log(data.id, data.name, data.types[0].type.name)
             const html = `
             <div class="pokemon__name">${data.name}</div>
-            
+
         </div>
             `
             wrapperPoke.insertAdjacentHTML('beforeend', html)
@@ -27,7 +27,7 @@ const getPokemon = async num => {
 
 }
 {/* <img src="" alt="" class="pokemon__image"></img> */ }
-getPokemon(25)
+getPokemon(20)
 // fetch(`https://pokeapi.co/api/v2/pokemon/ditto`).then((res) => res.json())
 //     .then(data => {
 //         console.log(data)
