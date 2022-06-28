@@ -10,7 +10,7 @@ let html;
 
 btnFetchAll.addEventListener('click', (e)=> {
     e.preventDefault()
-    getPokemon(150)
+    getPokemon(10)
     btnFetchAll.disabled = true
     console.log('All pokemons fetched!')
 })
@@ -42,7 +42,7 @@ const getPokemon = async num => {
             pokeContainer.insertAdjacentHTML('beforeend',html)
         })
     
-
+        btnSortById.disabled=false
     }
     catch (err) {
         new Error(err, 'NOT gonna catch them all today.')
@@ -51,6 +51,7 @@ const getPokemon = async num => {
 
 
 let order = true;
+if (pokemons.length===0) btnSortById.disabled=true
 
 function sortPokemonsById() {
     order = !order
@@ -71,5 +72,9 @@ function sortPokemonsById() {
     
     
 }
+
+///function sortPokemon(type) 
+/// if (type === select-value) { }
+
 
 
