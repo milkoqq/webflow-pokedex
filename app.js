@@ -11,6 +11,7 @@ const inputSearch = document.querySelector(".input-search");
 
 // Global Variables
 let pokemons = [];
+let tempPokemons = pokemons;
 
 let html;
 
@@ -78,22 +79,37 @@ function renderPokemon(pokemon) {
 // ............
 // Sorting function
 // ............
-btnSortById.addEventListener("click", sortPokemonsById);
 let order = true;
+btnSortById.addEventListener("click", () => {
+    sortPokemonsById(tempPokemons)
+});
+
 if (pokemons.length === 0) btnSortById.disabled = true;
 
-function sortPokemonsById() {
+// function sortPokemonsById() {
+//     order = !order;
+//     // console.log("After Pressing The Button:", order);
+//     pokeContainer.innerHTML = "";
+//     order === true
+//         ? pokemons.sort((a, b) => a.id - b.id)
+//         : pokemons.sort((a, b) => b.id - a.id);
+//     pokemons.forEach((pokemon) => {
+//         renderPokemon(pokemon);
+//     });
+// }
+
+
+function sortPokemonsById(array) {
     order = !order;
     // console.log("After Pressing The Button:", order);
     pokeContainer.innerHTML = "";
     order === true
-        ? pokemons.sort((a, b) => a.id - b.id)
-        : pokemons.sort((a, b) => b.id - a.id);
-    pokemons.forEach((pokemon) => {
+        ? array.sort((a, b) => a.id - b.id)
+        : array.sort((a, b) => b.id - a.id);
+    array.forEach((pokemon) => {
         renderPokemon(pokemon);
     });
 }
-
 
 // ............
 // Search function
@@ -106,7 +122,8 @@ inputSearch.addEventListener("keyup", (e) => {
     searchPokemons.forEach((pokemon) => {
         renderPokemon(pokemon);
     });
-    // pokemons = searchPokemons
+
+    tempPokemons = searchPokemons
 
 });
 
