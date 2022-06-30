@@ -8,6 +8,7 @@ const btnSortById = document.querySelector(".sort-by-id");
 const btnSearch = document.querySelector(".btn-search");
 
 const inputSearch = document.querySelector(".input-search");
+const sortSelect = document.querySelector('#sort')
 
 // Global Variables
 let pokemons = [];
@@ -81,7 +82,7 @@ function renderPokemon(pokemon) {
 // ............
 let order = true;
 btnSortById.addEventListener("click", () => {
-    sortPokemonsById(tempPokemons)
+    sortPokemons(tempPokemons, 'id')
 });
 
 if (pokemons.length === 0) btnSortById.disabled = true;
@@ -99,13 +100,14 @@ if (pokemons.length === 0) btnSortById.disabled = true;
 // }
 
 
-function sortPokemonsById(array) {
+function sortPokemons(array, attr) {
     order = !order;
+    // console.log(attr)
     // console.log("After Pressing The Button:", order);
     pokeContainer.innerHTML = "";
     order === true
-        ? array.sort((a, b) => a.id - b.id)
-        : array.sort((a, b) => b.id - a.id);
+        ? array.sort((a, b) => a[attr] - b[attr])
+        : array.sort((a, b) => b[attr] - a[attr]);
     array.forEach((pokemon) => {
         renderPokemon(pokemon);
     });
@@ -127,6 +129,9 @@ inputSearch.addEventListener("keyup", (e) => {
 
 });
 
+sortSelect.addEventListener('change', () => {
+    sortPokemons(tempPokemons, sortSelect.value)
+})
 
 ///function sortPokemon(type)
 /// if (type === select-value) { }
