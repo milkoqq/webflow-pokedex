@@ -100,6 +100,11 @@ function sortPokemons(array, attr) {
     });
 }
 
+
+sortSelect.addEventListener('change', () => {
+    sortPokemons(tempPokemons, sortSelect.value)
+})
+
 // ............
 // Search function
 // ............
@@ -116,9 +121,6 @@ inputSearch.addEventListener("keyup", (e) => {
 
 });
 
-sortSelect.addEventListener('change', () => {
-    sortPokemons(tempPokemons, sortSelect.value)
-})
 
 ///function sortPokemon(type)
 /// if (type === select-value) { }
