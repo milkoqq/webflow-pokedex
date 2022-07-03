@@ -21,7 +21,7 @@ let html;
 // ............
 btnFetchAll.addEventListener("click", (e) => {
     e.preventDefault();
-    getPokemon(151);
+    getPokemon(351);
     btnFetchAll.disabled = true;
     console.log("Making API calls to the server......");
 });
@@ -86,19 +86,6 @@ btnSortById.addEventListener("click", () => {
 });
 
 if (pokemons.length === 0) btnSortById.disabled = true;
-
-// function sortPokemonsById() {
-//     order = !order;
-//     // console.log("After Pressing The Button:", order);
-//     pokeContainer.innerHTML = "";
-//     order === true
-//         ? pokemons.sort((a, b) => a.id - b.id)
-//         : pokemons.sort((a, b) => b.id - a.id);
-//     pokemons.forEach((pokemon) => {
-//         renderPokemon(pokemon);
-//     });
-// }
-
 
 function sortPokemons(array, attr) {
     order = !order;
