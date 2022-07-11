@@ -120,7 +120,3 @@ inputSearch.addEventListener("keyup", (e) => {
     tempPokemons = searchPokemons
 
 });
-
-
-///function sortPokemon(type)
-/// if (type === select-value) { }
