@@ -21,7 +21,7 @@ let html;
 // ............
 btnFetchAll.addEventListener("click", (e) => {
     e.preventDefault();
-    getPokemon(351);
+    getPokemon(151);
     btnFetchAll.disabled = true;
     console.log("Making API calls to the server......");
 });
